@@ -1,5 +1,7 @@
 # Changelog
 
+2022-01-25 09:23:42 +0930 [e0402ec](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/e0402ecfb2ab662a74bb70df7937b02576d5e41b) - fix(lint_markdown): ensure the correct path for the job directory is used  
+2022-01-24 06:33:24 +0000 [46cc1fb](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/46cc1fbb6a878e485af39e679b5184a9912c2e7f) - build(version): bump version 0.5.0 → 0.6.0  
 2022-01-24 05:14:54 +0000 [b6dcb47](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/b6dcb47b1d1831784d36f482fd99c0ce5e56f088) - docs(markdown_lint): removed no longer needed requirement.  
 2022-01-23 06:53:57 +0000 [fd48316](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/fd48316ae763282fc106b7da184c05b35d9ae052) - docs(markdown_lint): updated docs on how to use and view rules.  
 2022-01-23 06:48:42 +0000 [9ab336f](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/9ab336fbddd6cba1d29c5a001ab52772ed4554b6) - feat(markdown_lint): include junit configuration file '.markdownlint-cli2.jsonc' in ci job.  

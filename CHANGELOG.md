@@ -1,3 +1,9 @@
+## v0.6.1rc0 (2022-01-25)
+
+### Bug Fixes
+
+- **lint_markdown**: [e0402ecf](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/e0402ecfb2ab662a74bb70df7937b02576d5e41b) - ensure the correct path for the job directory is used [ [!2](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/2) [!18](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/18) ]
+
 ## v0.6.0 (2022-01-24)
 
 ### Bug Fixes

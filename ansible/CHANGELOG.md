@@ -1,5 +1,6 @@
 # Changelog
 
+2022-01-24 06:33:24 +0000 [46cc1fb](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/46cc1fbb6a878e485af39e679b5184a9912c2e7f) - build(version): bump version 0.5.0 → 0.6.0  
 2022-01-24 13:37:23 +0930 [4e1da5e](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/4e1da5e87281284e021791a4b600a1bff53b8431) - ci(dependency_scanning): python 3.7 not available for dependecy scanning.  
 2022-01-23 07:14:32 +0000 [6668c2f](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/6668c2fb8d7545b4f9052ad3065e58f00d11be62) - refactor: test specifying must equal.  
 2022-01-23 06:12:35 +0000 [0df60b1](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/0df60b12dbfff983ca3a671b90ab1be126597e52) - fix(ansible): remove duplicate lines that last code review didn't remove.  

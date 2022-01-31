@@ -2,30 +2,29 @@
   image: node:alpine3.14
   stage: validation
   variables:
-    MDLINT_PATH: '"**/*.md"'
-    MDLINT_EXCLUDE_PATHS: '"!gitlab-ci"'
+    MDLINT_PATH: '**/*.md'
+    MDLINT_EXCLUDE_PATHS: '!gitlab-ci'
     DEFAULT_ROOT_DIR: './gitlab-ci'
   before_script:
-    - mkdir -p "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/$CI_JOB_NAME"
-    - mkdir -p "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/tests"
+    - mkdir -p "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/lint_markdown"
     - if [ "0$JOB_ROOT_DIR" == "0" ]; then ROOT_DIR=$DEFAULT_ROOT_DIR; else ROOT_DIR=$JOB_ROOT_DIR ; fi
     - echo "[DEBUG] ROOT_DIR[$ROOT_DIR]"
-    - cp -f "$CI_PROJECT_DIR/validation/.markdownlint-cli2.jsonc" "$CI_PROJECT_DIR/.markdownlint-cli2.jsonc"
+    - cp -f "$ROOT_DIR/validation/.markdownlint-cli2.jsonc" "$CI_PROJECT_DIR/.markdownlint-cli2.jsonc"
     - npm install markdownlint-cli2 --global
     - npm install markdownlint-cli2-formatter-junit --global
   script:
-    - markdownlint-cli2 $MDLINT_PATH $MDLINT_EXCLUDE_PATHS 1>&1 || EXITCODE=$?
+    - markdownlint-cli2 "$MDLINT_PATH" "$MDLINT_EXCLUDE_PATHS" 1>&1 || EXITCODE=$?
     - echo DEBUG EXITCODE[$EXITCODE]
     - rm "$CI_PROJECT_DIR/.markdownlint-cli2.jsonc"
-    - mv *.junit.xml $CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/tests/markdown.junit.xml
+    - mv *.junit.xml "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/lint_markdown/markdown_lint.junit.xml"
   artifacts:
     expire_in: 24 hrs
     when: always
     paths:
-      - "$CI_PROJECT_DIR/artifacts/*"
+      - "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/lint_markdown/*"
     reports:
       junit:
-        - "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/tests/*.junit.xml"
+        - "$CI_PROJECT_DIR/artifacts/$CI_JOB_STAGE/lint_markdown/*.junit.xml"
   rules:
     - if: '$CI_COMMIT_BRANCH'
       exists:
