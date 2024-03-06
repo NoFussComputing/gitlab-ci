@@ -1,0 +1,101 @@
+
+include:
+  - local: $JOB_ROOT_DIR/ansible/collection/.gitlab-ci.yml
+  - local: $JOB_ROOT_DIR/lint/ansible.gitlab-ci.yaml
+
+
+Create Release:
+  extends: .ansible_collection_merge
+  needs: []
+
+
+Ansible Lint:
+  extends: .ansible_linter_defaults
+  image: python:3.11-slim
+  variables:
+    ANSIBLE_LINT_PATH: meta/ playbooks/ roles/
+  needs: []
+  rules:
+
+    - if: $CI_COMMIT_TAG
+      when: always
+
+    - if: "$CI_COMMIT_AUTHOR =='nfc_bot <helpdesk@nofusscomputing.com>'"
+      when: never
+
+    - if: # Occur on merge
+        $CI_COMMIT_BRANCH == "development"
+          &&
+        $CI_PIPELINE_SOURCE == "push"
+      when: always
+
+    - if:
+        $CI_COMMIT_BRANCH != "development"
+          &&
+        $CI_COMMIT_BRANCH != "master"
+          &&
+        $CI_PIPELINE_SOURCE == "push"
+      when: always
+
+    - when: never
+
+
+# ToDo: add lint for README.md as ansible Galaxy doesn't seem to like html in the md document. 16 Feb 24.
+
+
+Ansible Lint (galaxy.yml):
+  extends: .ansible_linter_defaults
+  image: python:3.11-slim
+  variables:
+    ANSIBLE_LINT_PATH: galaxy.yml
+    TEST_MUST_PASS: 'yes'
+  needs: []
+  rules:
+
+    - if: $CI_COMMIT_TAG
+      when: always
+
+    - if: "$CI_COMMIT_AUTHOR =='nfc_bot <helpdesk@nofusscomputing.com>'"
+      when: never
+
+    - if: # Occur on merge
+        $CI_COMMIT_BRANCH == "development"
+          &&
+        $CI_PIPELINE_SOURCE == "push"
+      when: always
+
+    - if:
+        $CI_COMMIT_BRANCH != "development"
+          &&
+        $CI_COMMIT_BRANCH != "master"
+          &&
+        $CI_PIPELINE_SOURCE == "push"
+      when: always
+
+    - when: never
+
+
+Build Collection:
+  extends: .ansible_collection_build
+  needs:
+    - Ansible Lint
+    - Ansible Lint (galaxy.yml)
+
+
+Stage Collection:
+  extends: .ansible_collection_stage_package
+  needs:
+    - Build Collection
+
+
+Gitlab Release:
+  extends: .ansible_collection_release
+  needs:
+    - Stage Collection
+
+
+Ansible Galaxy:
+  extends: .ansible_collection_publish_galaxy
+  needs:
+    - Stage Collection
+    - Gitlab Release

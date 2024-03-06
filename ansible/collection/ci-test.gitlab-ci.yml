@@ -1,0 +1,63 @@
+# Ansible Collection Unit Test: # what would the unit tests be??
+
+#   stage: test
+#   before_script:
+
+#     - echo. #install deps
+
+#   script:
+
+#     - echo. # what????
+
+
+Ansible Collection Functional Test:
+
+  stage: test
+
+  # ToDo: refactor lint jobs to be individual so that pipeline linking can occur
+  # needs:
+  #   - Ansible Collection CI Lint
+
+  parallel:
+    matrix:
+      - NFC_CI_FUNCTIONAL_TEST: "push"
+        NFC_CI_FUNCTIONAL_TEST_BRANCH: feature
+      - NFC_CI_FUNCTIONAL_TEST: "merge"
+        NFC_CI_FUNCTIONAL_TEST_BRANCH: development
+      - NFC_CI_FUNCTIONAL_TEST: "release"
+        NFC_CI_FUNCTIONAL_TEST_BRANCH: development
+      - NFC_CI_FUNCTIONAL_TEST: "push"
+        NFC_CI_FUNCTIONAL_TEST_BRANCH: development
+      - NFC_CI_FUNCTIONAL_TEST: "merge"
+        NFC_CI_FUNCTIONAL_TEST_BRANCH: master
+
+  script:
+
+    - echo "to be created";
+
+   # ToDo: run ansible playbook to setup, run and wait for each stage
+
+   # ToDo: create build artifact for use with creating a badge for tests, per branch
+
+  artifacts:
+    untracked: true
+    when: on_success
+    expire_in: "90 days"
+  resource_group: ansible_collection_functional_test
+  rules:
+    # turn off until created
+    - when: never
+
+    - if:  # development/feature branch
+        $CI_COMMIT_BRANCH != "master" && 
+        $CI_PIPELINE_SOURCE == "push"
+      changes:
+        paths:
+          - 'ansible/collection/*.yml'
+        compare_to: 'development'
+      when: always
+
+    - if:  # master branch
+        $CI_COMMIT_BRANCH == "master" && 
+        $CI_PIPELINE_SOURCE == "push"
+      when: always

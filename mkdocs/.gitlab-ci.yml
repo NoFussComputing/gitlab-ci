@@ -1,5 +1,5 @@
 .MKDocs_Build:
-  image: python:3.7.5-buster
+  image: python:3.11.2-bullseye
   stage: build
   variables:
     GIT_DEPTH: 0

@@ -1,3 +1,21 @@
+## 0.7.0rc0 (2024-02-02)
+
+### Bug Fixes
+
+- **mkdocs**: [3fa71fe9](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/3fa71fe91ad1e874b76fab7323e02496ac757f5d) - correct mkdocs image name [ [!73](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/73) ]
+- **commit_footer_refs**: [0f6e06c5](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/0f6e06c50f7cae602cdc2ca00bbce7fe1fd72c32) - enable automated jobs without MR to succeed. [ [#44](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/issues/44) [!72](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/72) ]
+- **commit_footer_refs**: [b8199586](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/b8199586b4fe4c9f93efe68a908eaa8582f064c3) - dont update git submodules [ [!71](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/71) [#42](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/issues/42) [!2](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/2) ]
+
+### Code Refactor
+
+- **mkdocs**: [955ce375](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/955ce3752050e78085c2037fe66714db41114c9e) - set env name to gitlab pages [ [!73](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/73) [#43](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/issues/43) ]
+
+### Features
+
+- **sub_module_update**: [fc9f3761](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/fc9f37617cd26b3e44326161ba10183eb13444dd) - wbsite-template [ [!44](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/44) ]
+- **mkdocs**: [3fbd4317](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/3fbd4317c0388fb8e406eb78614e3943375496ed) - update requirements.txt to current versions [ [!73](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/73) [!13](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/13) [!44](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/44) ]
+- **mkdocs**: [c4087c70](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/commit/c4087c7069524df573a43db29c399940600ddba7) - update python to 3.11.2 [ [!73](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/73) [!13](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/13) [!44](https://gitlab.com/nofusscomputing/projects/gitlab-ci/-/merge_requests/44) ]
+
 ## 0.6.1 (2023-11-06)
 
 ### Bug Fixes

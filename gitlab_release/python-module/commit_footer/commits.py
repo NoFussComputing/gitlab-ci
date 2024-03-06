@@ -57,7 +57,7 @@ class Commits:
             footer_line = git_message.split("\n")
             footer_line = footer_line[(len(footer_line)-1)]
 
-            commit_footer = re.findall(r"([\!|\#][0-9]+)", str(git_message))
+            commit_footer = re.findall(r"([\!|\#][\d|not]+)", str(git_message))
 
             if len(commit_footer) > 0:
                 footer = commit_footer

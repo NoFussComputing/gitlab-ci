@@ -19,6 +19,8 @@ include:
   - local: $JOB_ROOT_DIR/gitlab_release/.gitlab-ci.yml
   - local: $JOB_ROOT_DIR/lint/markdown.gitlab-ci.yaml
   - local: $JOB_ROOT_DIR/python/.gitlab-ci.yml
+  # - local: $JOB_ROOT_DIR/test/.gitlab-ci.yml
+  - local: $JOB_ROOT_DIR/ansible/collection/ci-test.gitlab-ci.yml
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   #- template: Security/License-Scanning.gitlab-ci.yml
 
@@ -119,79 +121,28 @@ gilab-ci.yml Lint (python 3.11):
   image: python:3.11-slim
 
 
-Ansible_docker_os.Submodule.Deploy:
+Update Sub Repo:
   extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_docker_os
-
-
-Ansible_playbooks.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_playbooks
-
-
-Ansible-roles.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible-roles
-
-
-config.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/infrastructure/config
-
-
-Docker_Mail.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-mail
-
-
-docker-buildx-qemu.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-buildx-qemu
-
-
-docker-glpi.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-glpi
-
-
-docker_management.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/docker_management
-
-
-execution_environment.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/execution_environment
-
-
-git_configuration.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/git_configuration
-
-
-nodered_ldap_self_service.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/nodered_ldap_self_service
-
-
-Ops.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/ops
-
-
-Website.Submodule.Deploy:
-  extends: .submodule_update_trigger
-  variables:
-    SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/infrastructure/website
+  parallel:
+    matrix:
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/ops
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/infrastructure/configuration-management/itil_runbooks
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/infrastructure/website
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_playbooks
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible-roles
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_docker_os
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_test
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/collections/ci-test
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/common
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/docker_management
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/execution_environment
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/firewall
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/git_configuration
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/homeassistant
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/kubernetes
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/nfc_glpi
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-bind
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-mail
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-buildx-qemu
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/docker-glpi
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/kubernetes_monitoring

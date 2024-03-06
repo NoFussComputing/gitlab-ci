@@ -22,6 +22,17 @@
     - ls -la $PYTHON_VERSION
     - if [ $ANSIBLE_LINT_JUNIT > 0 ]; then echo "Error ANSIBLE_LINT_JUNIT failed with $ANSIBLE_LINT_JUNIT"; fi
     - if [ $ANSIBLE_LINT -ge 3 ]; then echo "ansible lint failed with $ANSIBLE_LINT"; exit $ANSIBLE_LINT; fi # don't fail the job?? 1=failed test, 2=failed command i.e. switch/flag
+    - | # Force failure if test must pass set TEST_MUST_PASS=yes
+      if [ "0$TEST_MUST_PASS" == "0yes" ]; then
+
+        echo "Trace TEST_MUST_PASS[${TEST_MUST_PASS}]";
+        
+        echo "ansible lint failed with $ANSIBLE_LINT";
+        
+        exit $ANSIBLE_LINT;
+        
+        fi
+
   after_script:
     - echo deactivate
   artifacts:

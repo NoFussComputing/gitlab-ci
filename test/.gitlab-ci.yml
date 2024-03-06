@@ -1,0 +1,99 @@
+# This gitlab-ci file is for testing job rules
+
+
+API Only:
+  stage: test
+  needs: []
+  script:
+    - echo should only run on
+  rules:
+    - if:
+        $CI_PIPELINE_SOURCE == "api"
+      when: always
+
+    - when: never
+
+
+Push Only:
+  stage: test
+  needs: []
+  script:
+    - echo testing rules
+  rules:
+    - if:
+        $CI_COMMIT_BRANCH != ""
+          &&
+        $CI_PIPELINE_SOURCE == "push"
+      when: always
+
+    - when: never
+
+
+MR-On Merging Only:
+  stage: test
+  needs: []
+  script:
+    - echo should only run on merging a MR
+  rules:
+    - if:
+        $CI_MERGE_REQUEST_IID == ""
+          &&
+        $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+
+    - when: never
+
+
+MR-Not On Merging:
+  stage: test
+  needs: []
+  script:
+    - echo should never run on merging a MR
+  rules:
+    - if:
+        $CI_MERGE_REQUEST_IID != ""
+          &&
+        $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+
+    - when: never
+
+
+MR-Merge Request Event:
+  stage: test
+  needs: []
+  script:
+    - echo should only run on merge event
+  rules:
+    - if:
+        $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+
+    - when: never
+
+
+Trigger Only:
+  stage: test
+  needs: []
+  script:
+    - echo should only run on trigger event
+  rules:
+    - if:
+        $CI_PIPELINE_SOURCE == "trigger"
+      when: always
+
+    - when: never
+
+
+Web Only:
+  stage: test
+  needs: []
+  script:
+    - echo should only run on web only trigger
+  rules:
+    - if:
+        $CI_PIPELINE_SOURCE == "web"
+      when: always
+
+    - when: never
+

@@ -27,7 +27,7 @@ pages:
     - mv "$CI_PROJECT_DIR/artifacts/build/Documentation.Build/build" public
   needs: [ 'Documentation.Build' ]
   environment: 
-    name: staging
+    name: Gitlab Pages
     url: $CI_PAGES_URL/$PAGES_ENVIRONMENT_PATH
   artifacts:
     paths:

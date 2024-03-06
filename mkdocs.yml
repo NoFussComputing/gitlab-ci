@@ -17,7 +17,11 @@ nav:
 
   - projects/index.md
 
-  - Gitlab CI: 
+  - Gitlab CI:
+
+    - Ansible:
+
+      - projects/gitlab-ci/ansible/collection.md
 
     - Build:
       
