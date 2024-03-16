@@ -133,12 +133,12 @@ Update Sub Repo:
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_docker_os
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/ansible_test
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/collections/ci-test
+      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/collections/firewall
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/collections/kubernetes
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/collections/phpipam_scan_agent
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/common
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/docker_management
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/execution_environment
-      - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/firewall
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/git_configuration
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/homeassistant
       - SUBMODULE_UPDATE_TRIGGER_PROJECT: nofusscomputing/projects/ansible/nfc_glpi
